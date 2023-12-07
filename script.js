@@ -12,6 +12,10 @@ let winCount = 0
 let lossCount = 0
 function playRound(playerSelection, computerSelection) {
 
+    if (playerSelection != 'rock' && playerSelection != 'paper' && playerSelection != 'scissors') {
+        return "Type in 'rock', 'paper', or 'scissors'!"
+    }
+
     if (playerSelection === computerSelection) {
         return 'Its a draw! Both you and the computer selected ' + playerSelection
     }
@@ -36,7 +40,7 @@ function playRound(playerSelection, computerSelection) {
             return 'You win! You selected paper and the computer selected rock'
         }
 
-    } else {
+    } else if (playerSelection === 'scissors') {
 
         if (computerSelection === 'rock') {
             lossCount++
