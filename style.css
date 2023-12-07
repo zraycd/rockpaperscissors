@@ -1,0 +1,42 @@
+body {
+    background-color: #2f3e46;
+    overflow: hidden;
+}
+button {
+    background-color: #668d83;
+    border: 10px outset #4a6669;
+}
+button:hover {
+    background-color: #5a7a72;
+    border: 10px outset #384f52;
+}
+button:active {
+    background-color: #759e94;
+    border: 10px inset #4d6c70;
+}
+.container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+}
+.content2 {
+    display: flex;
+    gap: 24px;
+}
+.btn {
+    height: 10vw;
+    width: 10vw;
+    border-radius: 10%;
+    font-size: 50px;
+}
+#computerSelection {
+    height: 15vw;
+    width: 15vw;
+    font-size: 10vw;
+    border-radius: 10%;
+    border: 15px solid #cad2c5;
+}
