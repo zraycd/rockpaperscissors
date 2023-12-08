@@ -4,6 +4,9 @@ const scissors = document.querySelector('#scissors')
 const container = document.querySelector('div')
 let computerSelection
 let playerSelection
+let wins = 0
+let losses = 0
+let draws = 0
 
 function getComputersChoice() {
     let randomNumber = Math.random()
@@ -16,49 +19,81 @@ function getComputersChoice() {
     }
 }
 container.addEventListener('click', clickHandler)
+
 function removeListener() {
     container.removeEventListener('click', clickHandler)
 }
+
 function clickHandler(event) {
     let targetId = event.target.id
     computerSelection = getComputersChoice()
     switch(targetId) {
         case 'rock':
-            playerSelection = 'rock'
+            playerSelection = '🪨'
             document.querySelector('#computerSelection').innerText = computerSelection
+            roundResult(playerSelection, computerSelection)
             highlightPick([paper, scissors], rock)
             removeListener()
             roundTimer()
             break;
         case 'paper':
-            playerSelection = 'paper'
+            playerSelection = '📄'
             document.querySelector('#computerSelection').innerText = computerSelection
+            roundResult(playerSelection, computerSelection)
             highlightPick([rock, scissors], paper)
             removeListener()
             roundTimer()
             break;
         case 'scissors':
-            playerSelection = 'scissors'
+            playerSelection = '✂️'
             document.querySelector('#computerSelection').innerText = computerSelection
+            roundResult(playerSelection, computerSelection)
             highlightPick([rock, paper], scissors)
             removeListener()
             roundTimer()
             break;
     }
 }
-function playRound(player, computer) {
+function roundResult(player, computer) {
     if (player === computer) {
-        return 'Its a draw.'
+        draws++;
+        document.querySelector('#topText').innerText = 'It\'s a draw'
+    } else {
+        switch (player) {
+            case '🪨':
+                if (computer === '✂️') {
+                    wins++;
+                    document.querySelector('#topText').innerText = 'You won!'
+                } else {
+                    losses++;
+                    document.querySelector('#topText').innerText = 'You lost.'
+                }
+                break;
+
+            case '📄':
+                if (computer === '🪨') {
+                    wins++;
+                    document.querySelector('#topText').innerText = 'You won!'
+                } else {
+                    losses++;
+                    document.querySelector('#topText').innerText = 'You lost.'
+                }
+                break;
+
+            case '✂️':
+                if (computer === '📄') {
+                    wins++;
+                    document.querySelector('#topText').innerText = 'You won!'
+                } else {
+                    losses++;
+                    document.querySelector('#topText').innerText = 'You lost.'
+                }
+                break;
+        }
     }
-    switch(player) {
-        case 'rock':
-            return computer === 'scissors' ? 'You won!' : 'You lost.';
-        case 'paper':
-            return computer === 'rock' ? 'You won!' : 'You lost.';
-        case 'scissors':
-            return computer === 'paper' ? 'You won!' : 'You lost.';
-        
-    }
+    document.querySelector('#wins').innerText = `Wins: ${wins}`
+    document.querySelector('#losses').innerText = `Losses: ${losses}`
+    document.querySelector('#draws').innerText = `Draws: ${draws}`
 }
 function roundTimer() {
     setTimeout(() => {
@@ -69,6 +104,7 @@ function roundTimer() {
             element.classList.add('act')
         })
         document.querySelector('#computerSelection').innerText = '?'
+        document.querySelector('#topText').innerText = 'Make your pick'
         container.addEventListener('click', clickHandler)
     }, 3000)
 }
