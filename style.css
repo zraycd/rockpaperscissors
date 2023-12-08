@@ -10,11 +10,11 @@ body {
     background-color: #668d83;
     border: 10px outset #4a6669;
 }
-.btn:hover {
+.hov:hover {
     background-color: #5a7a72;
     border: 10px outset #384f52;
 }
-.btn:active {
+.act:active {
     background-color: #3a4a53;
     /* background-color: #759e94; */
     border: 10px inset #3f575a;
@@ -26,6 +26,9 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.content1 {
+    margin-top: 16px;
 }
 #content2 {
     display: flex;
@@ -51,4 +54,12 @@ h1 {
     font-weight: 900;
     color: aliceblue;
     font-family: 'Kanit', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+#wins {
+    color: rgb(47, 245, 47);
+}
+#losses {
+    color: red;
 }

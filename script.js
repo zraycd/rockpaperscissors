@@ -15,38 +15,37 @@ function getComputersChoice() {
         return '✂️'
     }
 }
-container.addEventListener('click', (event) => {
+container.addEventListener('click', clickHandler)
+function removeListener() {
+    container.removeEventListener('click', clickHandler)
+}
+function clickHandler(event) {
+    let targetId = event.target.id
     computerSelection = getComputersChoice()
-
-    let target = event.target
-
-    console.log(target)
-    switch(target.id) {
+    switch(targetId) {
         case 'rock':
             playerSelection = 'rock'
             document.querySelector('#computerSelection').innerText = computerSelection
-            paper.classList.add('hidden')
-            scissors.classList.add('hidden')
-            console.log('rock')
+            highlightPick([paper, scissors], rock)
+            removeListener()
             roundTimer()
             break;
         case 'paper':
             playerSelection = 'paper'
             document.querySelector('#computerSelection').innerText = computerSelection
-            rock.classList.add('hidden')
-            scissors.classList.add('hidden')
+            highlightPick([rock, scissors], paper)
+            removeListener()
             roundTimer()
             break;
         case 'scissors':
             playerSelection = 'scissors'
             document.querySelector('#computerSelection').innerText = computerSelection
-            paper.classList.add('hidden')
-            rock.classList.add('hidden')
+            highlightPick([rock, paper], scissors)
+            removeListener()
             roundTimer()
             break;
     }
-})
-
+}
 function playRound(player, computer) {
     if (player === computer) {
         return 'Its a draw.'
@@ -63,9 +62,19 @@ function playRound(player, computer) {
 }
 function roundTimer() {
     setTimeout(() => {
-        rock.classList.remove('hidden')
-        paper.classList.remove('hidden')
-        scissors.classList.remove('hidden')
+        let rps = [rock, paper, scissors]
+        rps.forEach(element => {
+            element.classList.remove('hidden')
+            element.classList.add('hov')
+            element.classList.add('act')
+        })
         document.querySelector('#computerSelection').innerText = '?'
+        container.addEventListener('click', clickHandler)
     }, 3000)
+}
+function highlightPick(hide, highlight) {
+    hide[0].classList.add('hidden')
+    hide[1].classList.add('hidden')
+    highlight.classList.remove('hov')
+    highlight.classList.remove('act')
 }
