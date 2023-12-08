@@ -3,6 +3,9 @@ body {
     background-color: #2f3e46;
     overflow: hidden;
 }
+.hidden {
+    display: none;
+}
 .btn, #computerSelection {
     background-color: #668d83;
     border: 10px outset #4a6669;
@@ -24,7 +27,7 @@ body {
     justify-content: center;
     align-items: center;
 }
-.content2 {
+#content2 {
     display: flex;
     gap: 24px;
     margin-top: 48px;
