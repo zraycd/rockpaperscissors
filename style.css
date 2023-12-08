@@ -19,7 +19,14 @@ body {
     /* background-color: #759e94; */
     border: 10px inset #3f575a;
 }
-.container {
+#container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#bodyContent {
     height: 100vh;
     width: 100vw;
     display: flex;

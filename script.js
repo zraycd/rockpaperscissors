@@ -2,6 +2,8 @@ const rock = document.querySelector('#rock')
 const paper = document.querySelector('#paper')
 const scissors = document.querySelector('#scissors')
 const container = document.querySelector('div')
+const content = document.querySelector('#bodyContent')
+const endMessage = document.createElement('h1')
 let computerSelection
 let playerSelection
 let wins = 0
@@ -94,6 +96,13 @@ function roundResult(player, computer) {
     document.querySelector('#wins').innerText = `Wins: ${wins}`
     document.querySelector('#losses').innerText = `Losses: ${losses}`
     document.querySelector('#draws').innerText = `Draws: ${draws}`
+    if (wins >= 5) {
+        container.removeChild(content)
+        container.appendChild(endMessage).innerText = "You won the game!"
+    } else if (losses >= 5) {
+        container.removeChild(content)
+        container.appendChild(endMessage).innerText = "You lost the game."
+    }
 }
 function roundTimer() {
     setTimeout(() => {
